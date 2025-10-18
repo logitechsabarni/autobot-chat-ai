@@ -1,19 +1,22 @@
-# Streamlit (latest stable version compatible with Python 3.13)
+# Streamlit and UI
 streamlit>=1.50.0,<2.0
-
-# Pillow (image handling)
-Pillow>=10.0.0,<11.0
-
-# Rich (for better console logging)
-rich>=14.2.0,<15.0
-
-# Markdown parser dependencies
-markdown-it-py>=4.0.0,<5.0
+rich>=13.3.4,<14
+markdown-it-py>=2.2.0,<3.0
 mdurl>=0.1.2,<0.2
+pygments>=2.13.0,<3.0
 
-# Syntax highlighting
-pygments>=2.19.2,<3.0
+# Image handling
+Pillow>=9.5.0,<10
 
-# Optional: other dependencies your app may require
-numpy>=1.27.0,<2.0
-pandas>=2.1.0,<3.0
+# AI / OpenAI
+openai>=0.27.0,<1.0
+
+# Firebase Admin (if you use Firebase backend)
+firebase-admin>=7.0.0,<8.0
+
+# Data processing (optional, include if used)
+pandas>=2.0.0,<3.0
+numpy>=1.26.0,<2.0
+
+# HTTP requests
+requests>=2.31.0,<3.0
