@@ -1,0 +1,17 @@
+from PIL import Image
+
+# User profile
+img = Image.new('RGB', (100, 100), color=(255, 200, 150))
+img.save('assets/user.png')
+
+# Task icon
+img = Image.new('RGB', (50, 50), color=(100, 200, 255))
+img.save('assets/task.png')
+
+# Calendar icon
+img = Image.new('RGB', (50, 50), color=(200, 255, 100))
+img.save('assets/calendar.png')
+
+# Payment icon
+img = Image.new('RGB', (50, 50), color=(255, 150, 150))
+img.save('assets/payment.png')
