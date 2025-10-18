@@ -1,7 +1,25 @@
 import streamlit as st
-from PIL import Image
+from PIL import Image, ImageDraw
 import random
 from datetime import datetime
+import io
+import base64
+
+# --------------------------
+# Function to create dummy images
+# --------------------------
+def create_dummy_image(color, size=(100, 100), text=None):
+    img = Image.new("RGB", size, color)
+    if text:
+        draw = ImageDraw.Draw(img)
+        draw.text((10, 40), text, fill="white")
+    return img
+
+# Create all images in-memory
+user_img = create_dummy_image((255, 200, 150), text="User")
+task_img = create_dummy_image((100, 200, 255), text="Task")
+calendar_img = create_dummy_image((200, 255, 100), text="Cal")
+payment_img = create_dummy_image((255, 150, 150), text="Pay")
 
 # Page config
 st.set_page_config(page_title="AutoBot Dashboard", page_icon="💬", layout="wide")
@@ -10,7 +28,7 @@ st.set_page_config(page_title="AutoBot Dashboard", page_icon="💬", layout="wid
 # Sidebar: User Profile
 # --------------------------
 st.sidebar.markdown("### 👤 User Profile")
-st.sidebar.image("assets/user.png", width=100)
+st.sidebar.image(user_img, width=100)
 st.sidebar.write("**Username:** Sabarni Guha")
 st.sidebar.write("**Tasks Completed:** 8 / 15")
 st.sidebar.write("**Upcoming Tasks:** 5")
@@ -57,7 +75,6 @@ st.write("### Tasks for", selected_date)
 for task in tasks_on_date[selected_date]:
     st.checkbox(task)
 
-# Add new task
 new_task = st.text_input("Add a new task")
 if st.button("Add Task"):
     if selected_date in tasks_on_date:
@@ -70,7 +87,6 @@ if st.button("Add Task"):
 # Dummy Chat Section
 # --------------------------
 st.subheader("💬 Chat with AutoBot (Dummy Responses)")
-
 dummy_responses = [
     "Don't forget your meeting at 5 PM today!",
     "You have 3 upcoming tasks this week.",
@@ -103,7 +119,7 @@ if st.button("Send Message"):
 # Dummy Payment Section
 # --------------------------
 st.subheader("💰 Payments")
-st.image("assets/payment.png", width=80)
+st.image(payment_img, width=80)
 st.write("Upcoming payments (dummy data):")
 payments = [
     {"name": "Electricity Bill", "amount": "$50", "due": "2025-10-18"},
@@ -112,4 +128,3 @@ payments = [
 ]
 for p in payments:
     st.write(f"- **{p['name']}** | Amount: {p['amount']} | Due: {p['due']}")
-
